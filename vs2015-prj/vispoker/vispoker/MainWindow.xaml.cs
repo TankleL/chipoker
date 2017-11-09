@@ -24,13 +24,18 @@ namespace vispoker
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void ParseLine(string line)
-        {
+        {   
             if (line.Length <= 0)
                 return;
+
+            if (line == "clear")
+            {
+                pnl_cardset.Children.Clear();
+                return;
+            }
             
             CardList clist = new CardList();
             if (clist.Update(line))
