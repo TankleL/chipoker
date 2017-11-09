@@ -31,13 +31,10 @@ namespace vispoker
         {
             if (line.Length <= 0)
                 return;
-
-            if (line[0] == '[' &&
-                line[line.Length - 1] == ']')
+            
+            CardList clist = new CardList();
+            if (clist.Update(line))
             {
-                CardList clist = new CardList();
-                if (!clist.Update(line))
-                    return;
                 clist.Height = 200;
                 pnl_cardset.Children.Add(clist);
             }
