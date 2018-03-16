@@ -6,6 +6,8 @@
 *.user
 *.sln.docstates
 *.simds
+*.run
+*.o
 *bin/
 
 # Build results
