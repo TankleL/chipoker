@@ -1,6 +1,6 @@
 TARGETS = entrance.o
 CC = clang++
-CCFLAGS = -Wall -std=c++11
+CCFLAGS = -Wall -std=c++14 -O3
 
 INCS = ./src/asx.h
 

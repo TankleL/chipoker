@@ -9,6 +9,7 @@
 *.run
 *.o
 *bin/
+*.db
 
 # Build results
 

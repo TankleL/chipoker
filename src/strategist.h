@@ -41,6 +41,8 @@ namespace Chipoker
 	public:
 		virtual void on_turn(std::vector<Card>& new_cards) = 0;
 		virtual bool on_turn(std::vector<Card>& new_cards, const std::vector<Card>& old_cards)  = 0;
+
+
 	};
 }
 

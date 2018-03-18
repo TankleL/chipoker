@@ -142,16 +142,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\aiplayer.h" />
     <ClInclude Include="..\..\..\src\card.h" />
     <ClInclude Include="..\..\..\src\judger.h" />
     <ClInclude Include="..\..\..\src\player.h" />
     <ClInclude Include="..\..\..\src\prerequisites.h" />
-    <ClInclude Include="..\..\..\src\sjoker.h" />
     <ClInclude Include="..\..\..\src\strategist.h" />
+    <ClInclude Include="..\..\..\src\tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\entrance.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

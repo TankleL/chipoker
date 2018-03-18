@@ -35,5 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <memory>
+#include <set>
+#include <map>
 
 #endif // CHIPOKER_PREREQUISITES_H
