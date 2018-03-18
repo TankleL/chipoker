@@ -58,6 +58,17 @@ int main(int argc, char* argv[])
 		deal_random(player_list, left_cards);
 	}
 
+	{// print cards
+		int i = 0;
+		for (Player& player : players)
+		{
+			++i;
+			player.arrange_card();
+			cout << "Player " << i << ": -----------------------" << endl;
+			cout << player.show_cards().c_str() << endl;
+		}
+	}
+
 	Tree<std::string, int> treeRoot("treeRoot", 0);
 
 	treeRoot.add_child(std::make_shared<Tree<std::string, int>>("treeA", 1));

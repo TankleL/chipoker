@@ -79,6 +79,11 @@ namespace Chipoker
 
 	public:
 		int m_card;
+
+	protected:
+		static std::map<int, std::string>	m_code2name;
+		static std::map<std::string, int>	m_name2code;
+		static bool							m_mapinited;
 	}; // class Card
 
 
@@ -123,54 +128,14 @@ namespace Chipoker
 
 	inline Card::Types Card::get_color() const
 	{
-		switch (m_card & 0xf0)
-		{
-		case 0x10:
-			return Types::diamond;
-		case 0x20:
-			return Types::club;
-		case 0x30:
-			return Types::heart;
-		case 0x40:
-			return Types::spade;
-		default:
-			return Types::unknown;
-		}
+		int color = m_card & 0xf0;
+		return (Types)color;
 	}
 
 	inline Card::Types Card::get_value() const
 	{
-		switch (m_card & 0x0f)
-		{
-		case 0x0C:
-			return Types::ace;
-		case 0x0D:
-			return Types::c2;
-		case 0x01:
-			return Types::c3;
-		case 0x02:
-			return Types::c4;
-		case 0x03:
-			return Types::c5;
-		case 0x04:
-			return Types::c6;
-		case 0x05:
-			return Types::c7;
-		case 0x06:
-			return Types::c8;
-		case 0x07:
-			return Types::c9;
-		case 0x08:
-			return Types::c10;
-		case 0x09:
-			return Types::jack;
-		case 0x0A:
-			return Types::queen;
-		case 0x0B:
-			return Types::king;
-		default:
-			return Types::unknown;
-		}
+		int value = m_card & 0x0f;
+		return (Types)value;
 	}
 
 	inline Card::Types Card::gen_card(Types color, Types value)
@@ -182,106 +147,29 @@ namespace Chipoker
 
 	inline std::string Card::get_name() const
 	{
-		switch (m_card)
-		{
-		case 0x5f:
-			return "black joker";
-
-		case 0x6f:
-			return "red joker";
-
-		default:
-			break;
-		}
-
-		std::string color_name;
-		Types color = get_color();
-		switch (color)
-		{
-		case Chipoker::Card::diamond:
-			color_name = "diamond";
-			break;
-
-		case Chipoker::Card::club:
-			color_name = "club";
-			break;
-
-		case Chipoker::Card::heart:
-			color_name = "heart";
-			break;
-
-		case Chipoker::Card::spade:
-			color_name = "spade";
-			break;
-
-		default:
-			return "unknown";
-		}
-
-		std::string value_name;
-		Types value = get_value();
-		switch (value)
-		{
-		case Chipoker::Card::ace:
-			value_name = "ace";
-			break;
-
-		case Chipoker::Card::c2:
-			value_name = "2";
-			break;
-
-		case Chipoker::Card::c3:
-			value_name = "3";
-			break;
-
-		case Chipoker::Card::c4:
-			value_name = "4";
-			break;
-
-		case Chipoker::Card::c5:
-			value_name = "5";
-			break;
-
-		case Chipoker::Card::c6:
-			value_name = "6";
-			break;
-
-		case Chipoker::Card::c7:
-			value_name = "7";
-			break;
-
-		case Chipoker::Card::c8:
-			value_name = "8";
-			break;
-
-		case Chipoker::Card::c9:
-			value_name = "9";
-			break;
-
-		case Chipoker::Card::c10:
-			value_name = "10";
-			break;
-
-		case Chipoker::Card::jack:
-			value_name = "jack";
-			break;
-
-		case Chipoker::Card::queen:
-			value_name = "queen";
-			break;
-
-		case Chipoker::Card::king:
-			value_name = "king";
-			break;
-
-		default:
-			return "unknown";
-		}
-
 		std::string result;
-		result.append(color_name);
-		result.append(" ");
-		result.append(value_name);
+
+		if (m_card == 0x5f || m_card == 0x6f)
+		{
+			result = m_code2name[m_card];
+		}
+		else
+		{
+			std::string color_name;
+			Types color = get_color();
+
+			if (color >= diamond && color <= spade)
+				color_name = m_code2name[color];
+
+			std::string value_name;
+			Types value = get_value();
+			value_name = m_code2name[value];
+
+
+			result.append(color_name);
+			result.append(" ");
+			result.append(value_name);
+		}
 
 		return result;
 	}

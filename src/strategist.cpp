@@ -1,5 +1,5 @@
 /* ****************************************************************************
-prerequisites.h
+strategist.cpp
 -------------------------------------------------------------------------------
 
 Copyright (c) 2017, Tain L.
@@ -27,17 +27,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 **************************************************************************** */
 
-#ifndef CHIPOKER_PREREQUISITES_H
-#define CHIPOKER_PREREQUISITES_H
+#include "prerequisites.h"
+#include "strategist.h"
 
-#include <assert.h>
-#include <time.h>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <memory>
-#include <set>
-#include <map>
-#include <functional>
+using namespace Chipoker;
 
-#endif // CHIPOKER_PREREQUISITES_H
+Strategist::Strategist()
+{
+	type_tryers.push_back(Strategist::try_single);
+	type_tryers.push_back(Strategist::try_pair);
+}
+
+std::vector<std::vector<Card>> Strategist::try_single(const std::vector<Card>& cards)
+{
+	std::vector<std::vector<Card>> possibles;
+	for (const Card& card : cards)
+	{
+		std::vector<Card> single;
+		single.push_back(card);
+		possibles.push_back(std::move(single));
+	}
+	return std::move(possibles);
+}
+
+std::vector<std::vector<Card>> Strategist::try_pair(const std::vector<Card>& cards)
+{
+	std::vector<std::vector<Card>> possibles;
+	if (cards.size() > 1)
+	{// figure out the possible combos
+		size_t i = 1;
+		while (i < cards.size())
+		{
+			std::vector<Card>	pair;
+			pair.push_back(cards[i - 1]);
+			pair.push_back(cards[i]);
+
+			if (Judger::pair(pair))
+			{
+				possibles.push_back(std::move(pair));
+				i += 2;
+				continue;
+			}
+			++i;
+		}
+	}
+	return std::move(possibles);
+}

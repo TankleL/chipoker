@@ -150,7 +150,9 @@
     <ClInclude Include="..\..\..\src\tree.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\card.cpp" />
     <ClCompile Include="..\..\..\src\entrance.cpp" />
+    <ClCompile Include="..\..\..\src\strategist.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

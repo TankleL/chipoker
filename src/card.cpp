@@ -1,5 +1,5 @@
 /* ****************************************************************************
-prerequisites.h
+card.cpp
 -------------------------------------------------------------------------------
 
 Copyright (c) 2017, Tain L.
@@ -27,17 +27,51 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 **************************************************************************** */
 
-#ifndef CHIPOKER_PREREQUISITES_H
-#define CHIPOKER_PREREQUISITES_H
+#include "prerequisites.h"
+#include "card.h"
 
-#include <assert.h>
-#include <time.h>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <memory>
-#include <set>
-#include <map>
-#include <functional>
+using namespace Chipoker;
 
-#endif // CHIPOKER_PREREQUISITES_H
+std::map<int, std::string> Card::m_code2name
+= { {Card::ace, "ace"},
+	{ Card::c2, "2" },
+	{ Card::c3, "3" },
+	{ Card::c4, "4" },
+	{ Card::c5, "5" },
+	{ Card::c6, "6" },
+	{ Card::c7, "7" },
+	{ Card::c8, "8" },
+	{ Card::c9, "9" },
+	{ Card::c10, "10" },
+	{ Card::jack, "jack" },
+	{ Card::queen, "queen" },
+	{ Card::king, "king" },
+	{ Card::black_joker, "black_joker" },
+	{ Card::red_joker, "red_joker" },
+	{ Card::diamond, "diamond" },
+	{ Card::club, "club" },
+	{ Card::heart, "heart" },
+	{ Card::spade, "spade" } };
+
+std::map<std::string, int> Card::m_name2code
+= { {"ace", Card::ace },
+	{ "2", Card::c2 },
+	{ "3", Card::c3 },
+	{ "4", Card::c4 },
+	{ "5", Card::c5 },
+	{ "6", Card::c6 },
+	{ "7", Card::c7 },
+	{ "8", Card::c8 },
+	{ "9", Card::c9 },
+	{ "10", Card::c10 },
+	{ "jack", Card::jack },
+	{ "queen", Card::queen },
+	{ "king", Card::king },
+	{ "black_joker", Card::black_joker },
+	{ "red_joker", Card::red_joker },
+	{ "diamond", Card::diamond },
+	{ "club", Card::club },
+	{ "heart", Card::heart },
+	{ "spade", Card::spade } };
+
+

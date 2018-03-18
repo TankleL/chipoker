@@ -36,13 +36,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace Chipoker
 {
-	class Strategist abstract
+	class Strategist
 	{
 	public:
-		virtual void on_turn(std::vector<Card>& new_cards) = 0;
-		virtual bool on_turn(std::vector<Card>& new_cards, const std::vector<Card>& old_cards)  = 0;
+		struct SolveNode
+		{
+			SolveNode()
+				: weight(0e0)
+			{}
 
+			double weight;
 
+		};
+
+	public:
+		Strategist();
+
+	public:
+		void solve(const std::vector<Card>& cards);
+
+	protected:
+		typedef std::function	<std::vector<std::vector<Card>>(const std::vector<Card>&)>	try_type_fp;
+		std::vector<try_type_fp>	type_tryers;
+
+		static std::vector<std::vector<Card>> try_single(const std::vector<Card>& cards);
+		static std::vector<std::vector<Card>> try_pair(const std::vector<Card>& cards);
 	};
 }
 
