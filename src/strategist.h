@@ -45,8 +45,8 @@ namespace Chipoker
 				: weight(0e0)
 			{}
 
-			double weight;
-
+			double				weight;
+			std::vector<Card>	cards;
 		};
 
 	public:

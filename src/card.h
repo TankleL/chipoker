@@ -86,7 +86,6 @@ namespace Chipoker
 		static bool							m_mapinited;
 	}; // class Card
 
-
 	inline Card::Card() :
 		m_card(spade | ace)
 	{}
@@ -173,6 +172,7 @@ namespace Chipoker
 
 		return result;
 	}
+
 } // namespace Chipoker
 
 #endif // CHIPOKER_CARD_H

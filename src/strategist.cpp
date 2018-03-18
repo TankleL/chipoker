@@ -73,3 +73,8 @@ std::vector<std::vector<Card>> Strategist::try_pair(const std::vector<Card>& car
 	}
 	return std::move(possibles);
 }
+
+void Strategist::solve(const std::vector<Card>& cards)
+{
+
+}
