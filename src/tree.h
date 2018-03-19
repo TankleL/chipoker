@@ -39,14 +39,15 @@ namespace Chipoker
 	{
 	public:
 		typedef std::shared_ptr<Tree>	ChildPtr;
+		
 	public:
 		Tree()
 			: m_parent(nullptr)
 		{}
 		Tree(const _TKey& name, const _TValue& value)
-			: m_parent(nullptr)
-			, m_name(name)
+			: m_name(name)
 			, m_value(value)
+			, m_parent(nullptr)
 		{}
 
 		virtual	~Tree()
@@ -72,8 +73,8 @@ namespace Chipoker
 		std::shared_ptr<Tree> get_child(const _TKey& name) const
 		{
 			std::shared_ptr<Tree> res;
-			std::map<_TKey, std::shared_ptr<Tree>>::const_iterator citer =
-				m_children.find(name);
+
+			auto citer = m_children.find(name);
 			if (citer != m_children.end())
 			{
 				res = citer->second;
@@ -81,6 +82,7 @@ namespace Chipoker
 			return std::move(res);
 		}
 
+		
 	protected:
 		_TKey									m_name;
 		_TValue									m_value;
